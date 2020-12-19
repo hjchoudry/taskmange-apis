@@ -1,21 +1,6 @@
-# Playlist Mananger
+# Task Mananger
 
-Playlist Apis.
-
-http://localhost::8000/delete-playlist/2
-http://localhost::8000/edit-playlist/1
-http://localhost::8000/user
-http://localhost::8000/add-playlist
-http://localhost::8000/add-playlist
-http://localhost::8000/delete-song/1
-http://localhost::8000/user/playlists
-http://localhost::8000/login
-http://localhost::8000/register
-http://localhost::8000/user
-http://localhost::8000/show
-http://localhost::8000/logout
-
-# Basic Playlist Managment application develop in Nodejs.
+# Basic Task Managment application develop in Nodejs.
 
 # Technologies Used
 
@@ -30,6 +15,5 @@ http://localhost::8000/logout
 Running applications.
 Make sure nodejs & yarn is installed in system.
 
-1. Run npm install
-   npm install
+1. npm install
    npm start
