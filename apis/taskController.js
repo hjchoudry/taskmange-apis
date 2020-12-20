@@ -1,10 +1,6 @@
-const knex = require("knex")({
-  client: "sqlite3",
-  connection: {
-    filename: "./dev.sqlite3"
-  },
-  useNullAsDefault: true
-  });
+const database = require("../settings");
+
+const knex = require("knex")(database);
 
 function TasksToDO(req, res) {
   knex
@@ -26,11 +22,26 @@ function TasksCompleted(req, res) {
       return res.json(tasksCompleted);
     });
 }
+function Task(req, res) {
+  const { taskId } = req.params;
+  knex
+    .select("*")
+    .from("tasks")
+    .where("id", taskId)
+    .where("user_id", req.user.id)
+    .first()
+    .then((task) => {
+    if (task) res.status(200).json(task)
+    else res.status(500).json({message:"Unable to fetch task!"})
+    })
+    .catch(() => res.status(500).json({message:"Unable to fetch task!"}));
+}
 
 function createTasks(req, res) {
   const payload = req.body;
+  const createdat =  `${new Date()}`;  
   knex("tasks")
-    .insert({ ...payload, user_id: req.user.id })
+    .insert({ ...payload, user_id: req.user.id , created:createdat })
     .then(() => res.status(200).json({ alert:{type:"success",message:"You have created new task."}}))
     .catch((error) => res.status(500).json(error));
 }
@@ -56,6 +67,7 @@ const deletetask = (req, res) => {
 module.exports = {
   TasksToDO,
   TasksCompleted,
+  Task,
   createTasks,
   markAsDone,
   deletetask,

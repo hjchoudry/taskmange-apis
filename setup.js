@@ -1,11 +1,6 @@
 const database = require("./settings");
 
-const knex = require("knex")({
-  client: "sqlite3",
-  connection: {
-    filename: "./dev.sqlite3"
-  },
-useNullAsDefault: true});
+const knex = require("knex")(database);
 
 knex.schema
   .hasTable("users")
@@ -35,9 +30,10 @@ knex.schema
           table.string("title");
           table.string("details");
           table.string("completed").defaultTo("undone");
-          table.string("time");
-          table.string("date");
+          table.string("start_time");
+          table.string("end_time");
           table.string("user_id");
+          table.string("created");
         })
         .then(() => console.info("task table created"))
         .catch(error => console.error(error));

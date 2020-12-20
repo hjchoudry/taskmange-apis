@@ -26,12 +26,7 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-const knex = require("knex")({
-  client: "sqlite3",
-  connection: {
-    filename: "./dev.sqlite3"
-  },
-  useNullAsDefault: true});
+const knex = require("knex")(database);
 
 const KnexSessionStore = require("connect-session-knex")(session);
 const store = new KnexSessionStore({
@@ -67,6 +62,12 @@ app.get(
   jsonParser,
   TaskController.TasksCompleted
 );
+app.get(
+  "/task/:taskId",
+  middlewares.authenticate,
+  jsonParser,
+  TaskController.Task
+);
 // for admin
 app.get(
   "/admin/all-tasks",
@@ -74,12 +75,22 @@ app.get(
   jsonParser,
   AdminController.allTasks
 );
+app.patch(
+  "/admin/mark/:taskId",
+  jsonParser,
+  AdminController.markAsDone
+);
+app.delete(
+  "/admin/delete-task/:taskId",
+  AdminController.deletetask
+);
 app.get(
   "/admin/all-users",
   middlewares.admin,
   jsonParser,
   AdminController.allUser
 );
+
 app.delete(
   "/admin/delete-user/:userId",
   AdminController.deleteUser

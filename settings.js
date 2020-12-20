@@ -1,12 +1,24 @@
+
+// for Sqlite3 database
 const database ={
-  client: "postgres",
+  client: "sqlite3",
   connection: {
-      host : '127.0.0.1',
-      user : 'postgres',
-      password : '1234',
-      database : 'task',
+    filename: "./dev.sqlite3"
   },
-  useNullAsDefault: true
+useNullAsDefault: true
 };
+
+// for postgresql database
+
+// const database ={
+//   client: "postgres",
+//   connection: {
+//       host : '127.0.0.1',
+//       user : 'postgres',
+//       password : '1234',
+//       database : 'task',
+//   },
+//   useNullAsDefault: true
+// };
 
 module.exports = database;

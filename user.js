@@ -2,13 +2,7 @@ const bcrypt = require("bcrypt");
 const database = require("./settings");
 const jwt = require("jsonwebtoken");
 
-const knex = require("knex")({
-  client: "sqlite3",
-  connection: {
-    filename: "./dev.sqlite3"
-  },
-useNullAsDefault: true
-});
+const knex = require("knex")(database);
 
 const hashPassword = (password) => {
   return new Promise((resolve, reject) => {
@@ -98,7 +92,6 @@ function updateName(name , id) {
             });
 }
 function changePassword(oldPassword, password , id) {
-  let user = null;
   return knex("users")
     .where("id", id)
     .then((response) => {
@@ -125,7 +118,10 @@ function deleteAccounts(userId) {
          .where("id", userId)
          .del()
          .then(() => {
-          return true
+          return knex("tasks")
+                .where("user_id", userId)
+                .del()
+                .then(()=> {return true})
         });
 }
 module.exports = {
