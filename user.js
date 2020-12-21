@@ -27,7 +27,7 @@ const checkPassword = (password, hash) => {
 };
 
 const createToken = (payload) => {
-  const secret = "s3cr3t"; // process.env.secret
+  const secret = "s3cr3t"; 
   const expiresIn = 1000 * 60 * 60 * 24 * 7;
   const token = jwt.sign({ payload }, secret, { expiresIn });
   return token;

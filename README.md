@@ -16,4 +16,50 @@ Running applications.
 Make sure nodejs & yarn is installed in system.
 
 1. npm install
-   npm start
+
+2. npm start
+
+
+ # Here all apis:
+ # use base ulr with these apis
+ 
+ # post apis
+  "/login"
+  "/logout"
+  "/register"
+
+ #  get apis
+  "/tasks-to-do" 
+  "/tasks-completed"
+  "/task/:taskId"
+
+#  post api
+  "/add-task"
+
+# patch
+  "/mark/:taskId"
+
+# delete
+  "/delete/:taskId"
+
+# post
+  "/edit-name",
+  "/change-password"
+
+ # delete
+  "/delete-account"
+
+ # for admin
+  # get
+  "/admin/all-tasks"
+  # patch
+  "/admin/mark/:taskId"
+  
+  # delete
+  "/admin/delete-task/:taskId"
+
+ # get
+  "/admin/all-users"
+
+ # delete
+  "/admin/delete-user/:userId"
