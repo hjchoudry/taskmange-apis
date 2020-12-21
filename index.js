@@ -106,11 +106,14 @@ app.post(
 app.patch(
   "/mark/:taskId",
   jsonParser,
+  middlewares.authenticate,
   TaskController.markAsDone
 );
 
 app.delete(
   "/delete/:taskId",
+  middlewares.authenticate,
+  jsonParser,
   TaskController.deletetask
 );
 

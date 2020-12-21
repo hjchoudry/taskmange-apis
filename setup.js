@@ -29,11 +29,12 @@ knex.schema
           table.increments("id");
           table.string("title");
           table.string("details");
-          table.string("completed").defaultTo("undone");
+          table.string("status").defaultTo("undone");
           table.string("start_time");
           table.string("end_time");
           table.string("user_id");
           table.string("created");
+          table.string("completed_on");
         })
         .then(() => console.info("task table created"))
         .catch(error => console.error(error));

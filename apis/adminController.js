@@ -1,12 +1,13 @@
 const database = require("../settings");
-
 const knex = require("knex")(database);
 
 const markAsDone = (req, res) => {
   const  {taskId } = req.params;
+  const status = req.body.status;
+  const completed_on = req.body.completed_on;   
   knex("tasks")
     .where("id", taskId)
-    .update("completed", "done")
+    .update({status:status,completed_on:completed_on})
     .then(() => res.status(201).json({type:"success", message:"Task mark as done!"}))
     .catch(() => res.status(500).json({type:"error", message:"Unable to mark as done!"}));
 };
@@ -53,6 +54,7 @@ function allUser(req, res) {
       });
     }); 
 }
+
 module.exports = {
   markAsDone,
   deletetask,
