@@ -1,4 +1,3 @@
-const { title } = require("process");
 const database = require("../settings");
 
 const knex = require("knex")(database);

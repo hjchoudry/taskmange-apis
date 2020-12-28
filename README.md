@@ -1,6 +1,6 @@
-# Task Mananger
+# Task Manager
 
-# Basic Task Managment application develop in Nodejs.
+# Basic Task Management application develop in Nodejs.
 
 # Technologies Used
 
@@ -13,27 +13,27 @@
 \_ ExpressJs
 
 Running applications.
-Make sure nodejs & yarn is installed in system.
+Make sure node js & yarn is installed in system.
 
 1. npm install
 
 2. npm start
 
 
- # Here all apis:
- # use base ulr with these apis
+ # Here all APIs
+ # use base Ulr with these Apis
  
- # post apis
+ # post Apis
   "/login"
   "/logout"
   "/register"
 
- #  get apis
+ #  get Apis
   "/tasks-to-do" 
   "/tasks-completed"
   "/task/:taskId"
 
-#  post api
+#  post Api
   "/add-task"
 
 # patch
