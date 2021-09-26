@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
 
-module.exports = function authenticate( req ,res, next ) {
-  const token = req?.cookies.jwt;
+module.exports = function authenticate(req, res, next) {
+  console.log("this auth",req)
+  const token = req.cookies.jwt;
   if (token) {
     jwt.verify(token, "s3cr3t", (error, decodedToken) => {
       if (error) {
